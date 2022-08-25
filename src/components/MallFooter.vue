@@ -4,7 +4,11 @@
 
 <script>
 export default {
-  props: ['companyName']
+  props: {
+    companyName: {
+      type: String
+    }
+  }
 }
 </script>
 

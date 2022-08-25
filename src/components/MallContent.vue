@@ -9,7 +9,14 @@
 
 <script>
 export default {
-  props: ['products']
+  props: {
+    products: {
+      type: Array,
+      default() {
+        return [];
+      },
+    }
+  }
 }
 </script>
 
