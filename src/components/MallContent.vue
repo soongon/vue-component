@@ -1,8 +1,6 @@
 <template>
   <ul>
-    <li>{{ products[0] }}</li>
-    <li>{{ products[1] }}</li>
-    <li>{{ products[2] }}</li>
+    <li v-for="todo in todos" :key="todo.id">{{ todo.title }}</li>
   </ul>
   <br/>
 </template>
@@ -10,7 +8,7 @@
 <script>
 export default {
   props: {
-    products: {
+    todos: {
       type: Array,
       default() {
         return [];

@@ -1,6 +1,6 @@
 <template>
   <mall-header :title='title'>안녕하세요</mall-header>
-  <mall-content :products='products'/>
+  <mall-content :todos='todos'/>
   <mall-footer :companyName='company'/>
   <button @click="changeCompany('kim soongon')">첫번째 버튼</button>
   <button @click="changeCompany('vue.js')">두번째 버튼</button>
@@ -14,6 +14,7 @@ import MallContent from "./components/MallContent.vue";
 import MallFooter from "./components/MallFooter.vue";
 
 import calculator from "./mixins/calculator";
+import axios from 'axios';
 
 export default {
   name: 'App',
@@ -28,10 +29,20 @@ export default {
     MallContent,
     MallFooter,
   },
+  mounted() {
+    axios.get('https://jsonplaceholder.typicode.com/todos')
+        .then(res => {
+          console.log(res.data);
+          this.todos = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+  },
   data() {
     return {
-      title: 'Vue 쇼핑몰',
-      products: ['아이폰', '갤럭시22', '아이패드 프로'],
+      title: '할일 목록',
+      todos: [],
       company: 'vue.ktds',
     };
   }
